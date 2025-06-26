@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { SidebarLayout } from '@/layouts/SidebarLayout';
 import { LoginForm } from '@/components/LoginForm';
+import { WizardProvider } from '@/features/schoolSetupWizard/contexts/WizardContext';
 
 // Lazy load feature modules
 const StudentDashboard = React.lazy(() => import('@/features/student').then(m => ({ default: m.StudentDashboard })));
@@ -21,6 +22,9 @@ const AdminUsers = React.lazy(() => import('@/features/admin').then(m => ({ defa
 const AdminCourses = React.lazy(() => import('@/features/admin').then(m => ({ default: m.AdminCourses })));
 const AdminAnalytics = React.lazy(() => import('@/features/admin').then(m => ({ default: m.AdminAnalytics })));
 const AdminSettings = React.lazy(() => import('@/features/admin').then(m => ({ default: m.AdminSettings })));
+
+// School Setup Wizard - use the real wizard
+const SchoolSetupWizard = React.lazy(() => import('@/features/schoolSetupWizard').then(m => ({ default: m.SchoolSetupWizard })));
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen">
@@ -56,6 +60,11 @@ const RoleBasedRedirect: React.FC = () => {
     return <Navigate to="/login" replace />;
   }
 
+  // Special handling for SCHOOL_SETUP_ADMIN role
+  if (user.role === 'SCHOOL_SETUP_ADMIN') {
+    return <Navigate to="/school-setup" replace />;
+  }
+
   return <Navigate to={`/${user.role}`} replace />;
 };
 
@@ -79,6 +88,20 @@ export const AppRouter: React.FC = () => {
               </div>
             )
           } 
+        />
+
+        {/* School Setup Wizard routes (standalone, no sidebar layout) */}
+        <Route 
+          path="/school-setup/*" 
+          element={
+            <ProtectedRoute allowedRoles={['SCHOOL_SETUP_ADMIN']}>
+              <Suspense fallback={<LoadingSpinner />}>
+                <WizardProvider>
+                  <SchoolSetupWizard />
+                </WizardProvider>
+              </Suspense>
+            </ProtectedRoute>
+          }
         />
 
         {/* Protected routes with layout */}

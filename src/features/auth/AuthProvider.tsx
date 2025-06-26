@@ -52,6 +52,18 @@ const TEST_USERS = {
       createdAt: '2023-01-01T00:00:00Z',
       lastLoginAt: new Date().toISOString()
     }
+  },
+  'setup@test.com': {
+    password: 'TestPass123!',
+    user: {
+      id: 'setup-001',
+      email: 'setup@test.com',
+      firstName: 'Ada',
+      lastName: 'Lovelace',
+      role: 'SCHOOL_SETUP_ADMIN' as const,
+      createdAt: '2024-01-01T00:00:00Z',
+      lastLoginAt: new Date().toISOString()
+    }
   }
 };
 

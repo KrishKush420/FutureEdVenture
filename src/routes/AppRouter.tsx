@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '@/features/auth/AuthProvider';
 import { SidebarLayout } from '@/layouts/SidebarLayout';
 import { LoginForm } from '@/components/LoginForm';
+import { SchoolSceneAnimation } from '@/components/SchoolSceneAnimation';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { WizardProvider } from '@/features/schoolSetupWizard/contexts/WizardContext';
 
 // Lazy load feature modules
@@ -25,12 +27,6 @@ const AdminSettings = React.lazy(() => import('@/features/admin').then(m => ({ d
 
 // School Setup Wizard - use the real wizard
 const SchoolSetupWizard = React.lazy(() => import('@/features/schoolSetupWizard').then(m => ({ default: m.SchoolSetupWizard })));
-
-const LoadingSpinner = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-  </div>
-);
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode; allowedRoles?: string[] }> = ({ 
   children, 
@@ -78,13 +74,35 @@ export const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Root redirect - send to login if not authenticated */}
+        <Route 
+          path="/" 
+          element={
+            isAuthenticated ? <RoleBasedRedirect /> : <Navigate to="/login" replace />
+          } 
+        />
+
         {/* Public routes */}
         <Route 
           path="/login" 
           element={
             isAuthenticated ? <RoleBasedRedirect /> : (
-              <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-                <LoginForm />
+              <div className="min-h-screen relative flex flex-col">
+                {/* Top half - Sky and school scene area */}
+                <div className="flex-1 relative">
+                  <SchoolSceneAnimation />
+                </div>
+                
+                {/* Gradient demarkation and bottom half - Login area */}
+                <div className="flex-1 relative bg-gradient-to-b from-transparent via-green-100/50 to-green-200 flex items-center justify-center p-4">
+                  {/* Green overlay for better contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-50/70 to-green-100/90"></div>
+                  
+                  {/* Login form */}
+                  <div className="relative z-10">
+                    <LoginForm />
+                  </div>
+                </div>
               </div>
             )
           } 

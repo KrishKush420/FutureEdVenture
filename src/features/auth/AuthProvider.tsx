@@ -131,7 +131,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const storedUser = localStorage.getItem('testUser');
     if (storedUser) {
       try {
-        return JSON.parse(storedUser);
+        const user = JSON.parse(storedUser);
+        return user;
       } catch {
         localStorage.removeItem('testUser');
       }
@@ -264,11 +265,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
     // Clear test user session
     localStorage.removeItem('testUser');
+    // Clear all Cognito-related localStorage items
+    Object.keys(localStorage).forEach(key => {
+      if (key.startsWith('CognitoIdentityServiceProvider')) {
+        localStorage.removeItem(key);
+      }
+    });
     dispatch({ type: 'AUTH_LOGOUT' });
   };
 
   useEffect(() => {
     const initAuth = async () => {
+      // Optional: Clear localStorage for fresh start (comment out for persistent sessions)
+      // localStorage.removeItem('testUser');
+      
       try {
         const user = await getCurrentUser();
         if (user) {

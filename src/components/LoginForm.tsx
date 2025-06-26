@@ -32,10 +32,10 @@ export const LoginForm: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       className="w-full max-w-md mx-auto"
     >
-      <div className="bg-white rounded-2xl shadow-xl p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Sign in to your HindAcademy account</p>
+      <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-2xl border border-white/20 p-6">
+        <div className="text-center mb-6">
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">Welcome Back</h1>
+          <p className="text-gray-600 text-sm">Sign in to your HindAcademy account</p>
         </div>
 
         {error && (
@@ -49,9 +49,9 @@ export const LoginForm: React.FC = () => {
           </motion.div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email Address
             </label>
             <div className="relative">
@@ -65,7 +65,7 @@ export const LoginForm: React.FC = () => {
                   }
                 })}
                 type="email"
-                className="pl-10 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="pl-10 w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 placeholder="Enter your email"
               />
             </div>
@@ -75,7 +75,7 @@ export const LoginForm: React.FC = () => {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
             <div className="relative">
@@ -89,7 +89,7 @@ export const LoginForm: React.FC = () => {
                   }
                 })}
                 type={showPassword ? 'text' : 'password'}
-                className="pl-10 w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                className="pl-10 w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 placeholder="Enter your password"
               />
             </div>
@@ -123,8 +123,8 @@ export const LoginForm: React.FC = () => {
           </Button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-gray-600">
+        <div className="mt-4 text-center">
+          <p className="text-gray-600 text-sm">
             Don't have an account?{' '}
             <a href="/signup" className="text-primary-600 hover:text-primary-700 font-medium">
               Sign up

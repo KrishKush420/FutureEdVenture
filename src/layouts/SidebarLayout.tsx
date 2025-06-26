@@ -52,6 +52,13 @@ const roleConfig = {
       { path: '/admin/analytics', icon: Settings, label: 'Analytics' },
       { path: '/admin/settings', icon: Settings, label: 'Settings' }
     ]
+  },
+  SCHOOL_SETUP_ADMIN: {
+    color: 'role-admin',
+    icon: Settings,
+    routes: [
+      { path: '/school-setup', icon: Settings, label: 'School Setup' }
+    ]
   }
 };
 

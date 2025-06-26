@@ -161,8 +161,8 @@ const Profile: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {recentActivity.map((activity, index) => (
-                    <div key={index} className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50">
+                  {recentActivity.map((activity) => (
+                    <div key={activity.title} className="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50">
                       <div className={`p-2 rounded-lg ${
                         activity.type === 'course' ? 'bg-blue-100' :
                         activity.type === 'grade' ? 'bg-green-100' :
@@ -197,7 +197,7 @@ const Profile: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {stats.map((stat, index) => {
+                  {stats.map((stat) => {
                     const Icon = stat.icon;
                     return (
                       <div key={stat.label} className="flex items-center justify-between">
@@ -228,8 +228,8 @@ const Profile: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {achievements.map((achievement, index) => (
-                    <div key={index} className={`p-3 rounded-lg ${achievement.earned ? 'bg-yellow-50 border border-yellow-200' : 'bg-gray-50'}`}>
+                  {achievements.map((achievement) => (
+                    <div key={achievement.title} className={`p-3 rounded-lg ${achievement.earned ? 'bg-yellow-50 border border-yellow-200' : 'bg-gray-50'}`}>
                       <div className="flex items-center space-x-3">
                         <div className={`p-2 rounded-full ${achievement.earned ? 'bg-yellow-100' : 'bg-gray-100'}`}>
                           <Trophy className={`h-4 w-4 ${achievement.earned ? 'text-yellow-600' : 'text-gray-400'}`} />

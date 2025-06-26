@@ -21,7 +21,7 @@ export const LoginForm: React.FC = () => {
     try {
       await login(data);
       toast.success('Welcome back!');
-    } catch (err) {
+    } catch {
       toast.error('Login failed. Please check your credentials.');
     }
   };

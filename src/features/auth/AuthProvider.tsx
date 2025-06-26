@@ -3,7 +3,8 @@ import {
   CognitoUserPool,
   CognitoUser,
   AuthenticationDetails,
-  CognitoUserAttribute
+  CognitoUserAttribute,
+  CognitoUserSession
 } from 'amazon-cognito-identity-js';
 import { User, AuthState, LoginCredentials, SignupData } from '@/types/auth';
 
@@ -144,7 +145,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return;
       }
 
-      cognitoUser.getSession((err: any, session: any) => {
+      cognitoUser.getSession((err: Error | null, session: CognitoUserSession | null) => {
         if (err || !session?.isValid()) {
           resolve(null);
           return;

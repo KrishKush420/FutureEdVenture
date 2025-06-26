@@ -52,14 +52,13 @@ const Analytics: React.FC = () => {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {metrics.map((metric, index) => {
+        {metrics.map((metric) => {
           const Icon = metric.icon;
           return (
             <motion.div
               key={metric.label}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
             >
               <Card hover>
                 <CardContent className="p-6">
@@ -85,7 +84,6 @@ const Analytics: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3 }}
         >
           <Card>
             <CardHeader>
@@ -96,7 +94,7 @@ const Analytics: React.FC = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {userGrowth.map((data, index) => (
+                {userGrowth.map((data) => (
                   <div key={data.month} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex items-center space-x-4">
                       <span className="font-medium text-gray-900 w-8">{data.month}</span>
@@ -126,7 +124,6 @@ const Analytics: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4 }}
         >
           <Card>
             <CardHeader>
@@ -137,8 +134,8 @@ const Analytics: React.FC = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {topCourses.map((course, index) => (
-                  <div key={index} className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                {topCourses.map((course) => (
+                  <div key={course.title} className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-medium text-gray-900">{course.title}</h4>
                       <span className="text-sm font-medium text-green-600">{course.revenue}</span>
@@ -165,7 +162,6 @@ const Analytics: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
       >
         <Card>
           <CardHeader>

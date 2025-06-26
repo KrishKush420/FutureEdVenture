@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@design-system/components';
-import { Users, Search, Filter, Plus, Edit, Trash2, Mail, Shield, User } from 'lucide-react';
+import { Users, Search, Plus, Edit, Trash2, Mail, Shield, User } from 'lucide-react';
 
 const UsersPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');

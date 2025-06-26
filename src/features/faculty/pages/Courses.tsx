@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@design-system/components';
-import { BookOpen, Users, Settings, BarChart3, Plus, Eye, Edit } from 'lucide-react';
+import { Users, Plus, Eye, Edit } from 'lucide-react';
 
 const Courses: React.FC = () => {
   const courses = [
@@ -158,9 +158,6 @@ const Courses: React.FC = () => {
                   <Button variant="outline" size="sm" className="flex-1">
                     <Eye className="h-4 w-4 mr-1" />
                     View
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <BarChart3 className="h-4 w-4" />
                   </Button>
                 </div>
               </CardContent>
